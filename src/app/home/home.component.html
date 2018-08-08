@@ -1,2 +1,73 @@
-<h3>Home Component</h3>
-<p>Welcome to Angular Seed</p>
+<div class="container" *ngIf="languages.length > 0">
+  <h3>Employee Form</h3>
+  <form #form="ngForm" novalidate (submit)="submitForm(form)">
+    <div class="form-group" [class.has-error]="firstName.invalid && firstName.dirty">
+      <label class="control-label">First Name</label>
+      <input #firstName="ngModel" type="text" required class="form-control" [(ngModel)]="model.firstName" name="firstName">
+      <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
+        First Name is Required
+      </div>
+      <!-- <input type="text" class="form-control" [ngModel]="model.firstName"
+      (ngModelChange)="firstNameToUpperCase($event)" name="firstName"> -->
+    </div>
+    <!-- <h3>Classes :- </h3> <h4>{{firstName.className}}</h4>     -->
+    <!-- <h3>Properties</h3>
+    <h4>Touched :-  {{firstName.touched}}</h4>
+    <h4>UnTouched :-  {{firstName.untouched}}</h4>
+    <h4>Dirty :-  {{firstName.dirty}}</h4>
+    <h4>Pristine :-  {{firstName.pristine}}</h4>
+    <h4>Invalid :-  {{firstName.invalid}}</h4>
+    <h4>Valid :-  {{firstName.valid}}</h4> -->
+
+    <div class="form-group" [class.has-error]= "lastName.invalid && lastName.dirty">
+      <label class="control-label">Last Name</label>
+      <input #lastName="ngModel" type="text" required class="form-control" [(ngModel)]="model.lastName" name="lastName">
+      <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger">
+        Last Name is Required
+      </div>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" [(ngModel)]="model.isFullTime" name="is-full-time"> Full Time Employee
+      </label>
+    </div>
+    <label>Payment Type</label>
+    <div class="radio">
+      <label>
+        <input type="radio" [(ngModel)]="model.paymentType"  name="payment-Type" value="Monthly">Monthly
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" [(ngModel)]="model.paymentType"  name="payment-Type" value="Hourly">Hourly
+      </label>
+    </div>
+    <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
+      <label class="control-label">Primary Language</label>
+      <select class="form-control" #primaryLanguage required [(ngModel)]="model.primaryLanguage"
+        (blur)= "validatePrimaryLanguage(primaryLanguage.value)"
+        (change)= "validatePrimaryLanguage(primaryLanguage.value)" name="primary-Language">
+        <option value="default">Select a Language</option>
+        <option *ngFor="let language of languages">
+          {{language}}
+        </option>
+      </select>
+    </div>
+
+    <!-- <div class="form-group">
+      <label>Date Hired</label>
+      <input type="date" class="form-control">
+    </div> -->
+
+    <button class="btn btn-primary" type="submit" [disabled]="form.touched && form.invalid">OK</button>
+    <!-- <h3>Form is Valid - {{form.valid}}</h3>
+    <h3>Form is Invalid - {{form.invalid}}</h3>
+    <h3>Form is Pristine - {{form.pristine}}</h3>
+    <h3>Form is Dirty - {{form.dirty}}</h3>
+    <h3>Form is Touched - {{form.touched}}</h3>
+    <h3>Form is UnTouched - {{form.untouched}}</h3> -->
+  </form>
+  <!-- Model: {{model | json}}
+  <br>
+  Angular : {{form.value | json}} -->
+</div>

@@ -1,3 +1,4 @@
+import { FormPoster } from './services/form-poster.service';
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
@@ -33,7 +34,8 @@ import { ContactComponent } from './contact/contact.component';
     RouterModule.forRoot(rootRouterConfig, { useHash: true })
   ],
   providers: [
-    GithubService
+    GithubService,
+    FormPoster
   ],
   bootstrap: [ AppComponent ]
 })
