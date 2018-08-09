@@ -13,14 +13,17 @@ export class HomeComponent {
   languages = [];
   model = new Employee('', '', false, '', 'default');
   hasPrimaryLanguageError = false;
-
+  startDate: Date;
+  minDate: Date = new Date();
+  startTime: Date = new Date();
+  onOffSwitch = "Off";
+  postRating = 5;
   constructor(private formPoster: FormPoster){
     this.formPoster.getLanguages()
       .subscribe(
         data => this.languages = data.languages,
         err => console.log('get error: ', err)
       );
-
   }
   submitForm(form: NgForm){
       //console.log(this.model);
@@ -43,6 +46,14 @@ export class HomeComponent {
       this.hasPrimaryLanguageError = true;
     else
       this.hasPrimaryLanguageError = false;
+  }
+  hover(value) {
+    console.log("hover - ", value);
+  }
+
+  leave(value) {
+    console.log("leave - ", value)
+
   }
   //model = new Employee(null, null, null, null, null);
   // firstNameToUpperCase(value: string)

@@ -32,6 +32,12 @@
       </label>
     </div>
     <label>Payment Type</label>
+    <div class="btn-group">
+        <label name="payment-Type" class="btn btn-primary" [(ngModel)]="model.paymentType"
+               btnRadio="Monthly" tabindex="0" role="button">Monthly</label>
+        <label name="payment-Type" class="btn btn-primary" [(ngModel)]="model.paymentType"
+               btnRadio="Hourly" tabindex="0" role="button">Hourly</label>
+    </div>
     <div class="radio">
       <label>
         <input type="radio" [(ngModel)]="model.paymentType"  name="payment-Type" value="Monthly">Monthly
@@ -53,12 +59,39 @@
         </option>
       </select>
     </div>
+    <div class="form-group">
+        <div style="display:inline-block; min-height:290px;">
+            <datepicker name="startDate" [(ngModel)]="startDate"
+            [showWeeks] = "false"
+            [minDate]="minDate"></datepicker>
+          </div>
+          {{startDate}}
+    </div>
 
+
+    <div style="display: inline-block">
+        <timepicker name="startTime" [minuteStep]="15" [(ngModel)]="startTime"></timepicker>
+    </div>
+    <div class="form-group">
+    <button type="button" class="btn"
+        [class.btn-primary]= "onOffSwitch === 'On'"
+        name = "onOffSwitch" [(ngModel)]="onOffSwitch" btnCheckbox
+        btnCheckboxTrue="Off" btnCheckboxFalse="On">
+        {{onOffSwitch}}
+    </button>
+  </div>
+    <rating name="rating"
+    [(ngModel)]="postRating"
+    [max]="10"
+    (onHover)="hover($event)"
+    (onLeave)="leave($event)"></rating>
+    <h4>Rating - {{postRating}}</h4>
     <!-- <div class="form-group">
       <label>Date Hired</label>
       <input type="date" class="form-control">
     </div> -->
-
+    <br>
+    <br>
     <button class="btn btn-primary" type="submit" [disabled]="form.touched && form.invalid">OK</button>
     <!-- <h3>Form is Valid - {{form.valid}}</h3>
     <h3>Form is Invalid - {{form.invalid}}</h3>
